@@ -13,7 +13,7 @@ class CheckoutPage:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
-
+    '''''
     def add_products(self, product_names):
         """Add products to cart by their names. Accepts a list of product names."""
         products = self.driver.find_elements(*self.INVENTORY_ITEM)
@@ -34,6 +34,7 @@ class CheckoutPage:
             return int(cart_count)
         except Exception:
             return 0
+    '''
 
     def go_to_cart_and_get_items(self):
         """Go to cart and return a dict of product name to price."""

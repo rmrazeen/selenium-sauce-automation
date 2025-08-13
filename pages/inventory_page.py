@@ -29,3 +29,12 @@ class InventoryPage:
                 price = product.find_element(By.CLASS_NAME, "inventory_item_price").text
                 added_prices[pname] = price
         return added_prices
+    
+    def get_cart_count(self):
+        """Return the number of items in the cart."""
+        cart_icon = self.driver.find_element(*self.CART_ICON)
+        try:
+            cart_count = cart_icon.find_element(*self.CART_BADGE).text
+            return int(cart_count)
+        except Exception:
+            return 0

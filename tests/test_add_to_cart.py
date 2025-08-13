@@ -1,7 +1,7 @@
 from asserts.add_to_cart_assert import assert_cart_count
 
 # ---------- TEST ADD PRODUCTS TO CART ----------
-def test_add_to_cart(login, checkout_page):
+def test_add_to_cart(login, inventory_page):
     """ Verify user can add products to the cart."""
     # items added in a variable 
     products_to_add = ["Sauce Labs Backpack", "Sauce Labs Bike Light"]
