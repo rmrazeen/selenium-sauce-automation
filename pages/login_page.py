@@ -51,10 +51,17 @@ class LoginPage:
                 .enter_password(password)
                 .click_login())
     
+
     def is_at_home_page(self):
         """Verify if we are on products page after login"""
         element = self.wait.until(
             EC.presence_of_element_located(self.PRODUCTS_TITLE)
         )
         return element.text == "Products"
+
+    def logout(self):
+        MENU_BUTTON = (By.ID, "react-burger-menu-btn")
+        LOGOUT_LINK = (By.ID, "logout_sidebar_link")
+        self.wait.until(EC.element_to_be_clickable(MENU_BUTTON)).click()
+        self.wait.until(EC.element_to_be_clickable(LOGOUT_LINK)).click()
 
