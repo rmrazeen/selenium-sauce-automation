@@ -51,7 +51,7 @@ class LoginPage:
                 .enter_password(password)
                 .click_login())
     
-    def is_at_login_page(self):
+    def is_at_home_page(self):
         """Verify if we are on products page after login"""
         element = self.wait.until(
             EC.presence_of_element_located(self.PRODUCTS_TITLE)

@@ -25,4 +25,4 @@ def test_successful_login(login_page):
     login_page.login("standard_user", "secret_sauce")
     
     # Assert that we're on the products page after login
-    assert login_page.is_at_login_page(), "Login failed - Products page not displayed"
+    assert login_page.is_at_home_page(), "Login failed - Products page not displayed"
