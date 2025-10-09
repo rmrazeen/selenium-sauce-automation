@@ -64,4 +64,11 @@ class LoginPage:
         LOGOUT_LINK = (By.ID, "logout_sidebar_link")
         self.wait.until(EC.element_to_be_clickable(MENU_BUTTON)).click()
         self.wait.until(EC.element_to_be_clickable(LOGOUT_LINK)).click()
-
+        
+    def is_login_button_visible(self):
+        """Verify if the login button is visible (indicating we're on the login page)"""
+        try:
+            self.wait.until(EC.visibility_of_element_located(self.LOGIN_BUTTON))
+            return True
+        except:
+            return False
