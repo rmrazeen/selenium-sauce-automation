@@ -1,0 +1,4 @@
+- [ ] Check existing Allure setup and dependencies
+- [ ] Install Allure-Pytest if not already installed
+- [ ] Run tests with Allure command line to generate report
+- [ ] View the generated Allure report
