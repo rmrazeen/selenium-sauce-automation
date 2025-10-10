@@ -8,7 +8,6 @@ class LoginPage:
     USERNAME_FIELD = (By.ID, "user-name")
     PASSWORD_FIELD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "login-button")
-    PRODUCTS_TITLE = (By.XPATH, "//span[@data-test='title']")
     
     def __init__(self, driver):
         self.driver = driver
@@ -52,12 +51,7 @@ class LoginPage:
                 .click_login())
     
 
-    def is_at_home_page(self):
-        """Verify if we are on products page after login"""
-        element = self.wait.until(
-            EC.presence_of_element_located(self.PRODUCTS_TITLE)
-        )
-        return element.text == "Products"
+    
 
     def logout(self):
         MENU_BUTTON = (By.ID, "react-burger-menu-btn")
@@ -70,5 +64,15 @@ class LoginPage:
         try:
             self.wait.until(EC.visibility_of_element_located(self.LOGIN_BUTTON))
             return True
+        except:
+            return False
+            
+    def is_at_home_page(self):
+        """Verify if we are on products page after login"""
+        try:
+            products_title = self.wait.until(
+                EC.presence_of_element_located((By.XPATH, "//span[@data-test='title']"))
+            )
+            return products_title.text == "Products"
         except:
             return False

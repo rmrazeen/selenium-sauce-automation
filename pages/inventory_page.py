@@ -14,13 +14,10 @@ class InventoryPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)
 
-    
-    def inventory_url(self):
-        """Return the URL of the inventory page."""
-        inv_url = self.driver.get("https://www.saucedemo.com/inventory.html")  
-        return inv_url
-    
-    
+    def navigate_to_inventory(self):
+        """Navigate to the Inventory page."""
+        self.driver.get("https://www.saucedemo.com/inventory.html")
+
     def add_products(self, product_names):
         """Add products to cart by their names. Accepts a list of product names."""
         products = self.driver.find_elements(*self.INVENTORY_ITEM)
