@@ -16,11 +16,11 @@ class login_assertion:
             EC.presence_of_element_located(self.PRODUCTS_TITLE)
         )
         return element.text == "Products"
-
+    
+    def validate_url(self, expected_url):
+        """Verify if the current URL matches the expected URL"""
+        return self.driver.current_url == expected_url
+    
     def current_url(self):
         """Get the current URL of the page"""
-        return self.driver.current_url()
-    
-    def url_varify(self, expected_url):
-        """Verify if the current URL matches the expected URL"""
-        return self.current_url() == expected_url
+        return self.driver.current_url
