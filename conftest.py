@@ -7,6 +7,7 @@ from pages.inventory_page import InventoryPage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
 # ---------- FIXTURES ----------
+# Shared driver fixture for all tests
 @pytest.fixture
 def driver():
     driver = get_driver("chrome")
