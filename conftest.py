@@ -15,11 +15,12 @@ def driver():
     yield driver
     driver.quit()
 
-# Page object fixtures
+# login fixtures
 @pytest.fixture
 def login_page(driver):
     return LoginPage(driver)
 
+# assert fixtures
 @pytest.fixture
 def login_assert(driver):
     return login_assertion(driver)
