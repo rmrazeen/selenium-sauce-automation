@@ -25,6 +25,7 @@ def login_page(driver):
 def login_assert(driver):
     return login_assertion(driver)
 
+#logout fixture
 @pytest.fixture
 def logout_page(driver):
     return LogoutPage(driver)
