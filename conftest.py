@@ -6,7 +6,7 @@ from pages.logout_page import LogoutPage
 from pages.inventory_page import InventoryPage
 from pages.checkout_page import CheckoutPage
 from pages.inventory_page import InventoryPage
-
+# ---------- FIXTURES ----------
 @pytest.fixture
 def driver():
     driver = get_driver("chrome")
