@@ -15,6 +15,7 @@ def driver():
     yield driver
     driver.quit()
 
+# Page object fixtures
 @pytest.fixture
 def login_page(driver):
     return LoginPage(driver)
