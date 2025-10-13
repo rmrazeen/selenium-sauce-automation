@@ -30,6 +30,7 @@ def login_assert(driver):
 def logout_page(driver):
     return LogoutPage(driver)
 
+# inventory page fixture
 @pytest.fixture
 def inventory_page(driver):
     return InventoryPage(driver)
