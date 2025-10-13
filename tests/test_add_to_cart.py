@@ -15,3 +15,4 @@ def test_add_to_cart(login, inventory_page):
     
     # assertion function
     assert_cart_count(cart_count, len(products_to_add)) # compare actual count with expected count with len(products_to_add) for get the length of the list, which is 2 in this case and pass it to assert_cart_count from asserts/add_to_cart_assert.py and pass the cart_count variable and expected count as parameters
+#kill
