@@ -1,5 +1,6 @@
 from asserts.add_to_cart_assert import assert_cart_count
 
+
 # ---------- TEST ADD PRODUCTS TO CART ----------
 def test_add_to_cart(login, inventory_page):
     """ Verify user can add products to the cart."""
@@ -7,7 +8,7 @@ def test_add_to_cart(login, inventory_page):
     products_to_add = ["Sauce Labs Backpack", "Sauce Labs Bike Light"]
     
     # Add the specified products to the cart
-    inventory_page(products_to_add)
+    inventory_page.add_products(products_to_add)
     
     # Get the number of items in the cart
     cart_count = inventory_page.get_cart_count() # Retrieve cart count in a variable from the page get_cart_count() method
