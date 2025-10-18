@@ -9,6 +9,7 @@ class InventoryPage:
     ADD_TO_CART_BUTTON = (By.TAG_NAME, "button")
     CART_ICON = (By.CLASS_NAME, "shopping_cart_link")
     CART_BADGE = (By.CLASS_NAME, "shopping_cart_badge")
+    CHECKOUT_BUTTON = (By.ID, "checkout")
 
     def __init__(self, driver):
         self.driver = driver
@@ -38,3 +39,18 @@ class InventoryPage:
             return int(cart_count)
         except Exception:
             return 0
+            
+    def click_cart_icon(self):
+        """Click the cart icon to navigate to the cart page."""
+        self.driver.find_element(*self.CART_ICON).click()
+        
+    def add_first_item_to_cart(self):
+        """Add the first inventory item to cart."""
+        first_item = self.driver.find_element(*self.INVENTORY_ITEM)
+        first_item.find_element(*self.ADD_TO_CART_BUTTON).click()
+        return self
+        
+    def click_checkout_button(self):
+        """Click the checkout button on the cart page."""
+        self.wait.until(EC.element_to_be_clickable(self.CHECKOUT_BUTTON)).click()
+        return self

@@ -1,6 +1,6 @@
 import pytest
 from pages.login_page import LoginPage
-from pages.checkout_page import CheckoutPage
+from .checkout_page import CheckoutPage
 
 
 @pytest.fixture

@@ -1,7 +1,10 @@
 from asserts.add_to_cart_assert import assert_cart_count
 
 
+import pytest
+
 # ---------- TEST ADD PRODUCTS TO CART ----------
+@pytest.mark.smoke
 def test_add_to_cart(login, inventory_page):
     """ Verify user can add products to the cart."""
     # items added in a variable 
