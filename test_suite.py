@@ -16,6 +16,7 @@ if num_workers > cpu_cores:
 pytest.main([
     *test_files,
     "-m", 'smoke',
+    f"-n={num_workers}", # Add this line for parallel execution
     "--html=report/report.html",
     "--self-contained-html"
 ])

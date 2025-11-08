@@ -10,6 +10,63 @@ This project is a robust end-to-end test automation framework for the [Sauce Dem
 - Price validation between inventory and checkout
 - Modular structure for easy extension
 - HTML reporting support
+- Advanced pytest markers for test management and execution control
+
+## Pytest Markers
+This project implements various pytest markers to enhance test management and execution:
+
+### Basic Markers
+- **`@pytest.mark.smoke`**: Marks critical tests that verify basic functionality
+- **`@pytest.mark.regression`**: Marks comprehensive tests that verify overall system functionality
+- **`@pytest.mark.sanity`**: Marks tests that verify specific features after changes
+
+### Advanced Markers
+- **`@pytest.mark.skip`**: Unconditionally skips a test for any reason
+- **`@pytest.mark.skipif`**: Conditionally skips a test if a specific condition is met
+- **`@pytest.mark.xfail`**: Marks a test as expected to fail
+- **`@pytest.mark.flaky`**: Marks a test as flaky and enables retry logic for unstable tests
+- **`@pytest.mark.dependency`**: Manages test dependencies, ensuring tests run in a specific order
+- **`@pytest.mark.parametrize`**: Parameterizes tests with multiple sets of data
+
+### Examples of Advanced Markers Usage
+```python
+# Unconditional skip
+@pytest.mark.skip(reason="This test is skipped for demonstration purposes")
+def test_unconditional_skip():
+    pass
+
+# Conditional skip based on Python version
+@pytest.mark.skipif(sys.version_info < (3, 8), reason="Test requires Python 3.8 or higher")
+def test_conditional_skip():
+    pass
+
+# Expected failure
+@pytest.mark.xfail(reason="This test is expected to fail")
+def test_expected_failure():
+    pass
+
+# Flaky test with retry logic
+@pytest.mark.flaky(reruns=3, reruns_delay=2)
+def test_unstable_test():
+    pass
+
+# Test dependencies
+@pytest.mark.dependency(name="login_test")
+def test_login():
+    pass
+
+@pytest.mark.dependency(depends=["login_test"])
+def test_dependent_test():
+    pass
+
+# Parameterized test
+@pytest.mark.parametrize("username,password,expected", [
+    ("standard_user", "secret_sauce", True),
+    ("locked_out_user", "secret_sauce", False)
+])
+def test_login(username, password, expected):
+    pass
+```
 
 ## Project Structure
 ```
@@ -25,7 +82,8 @@ Selenium Project/
 │   ├── __init__.py
 │   ├── test_login.py
 │   ├── test_checkout.py
-│   └── test_logout.py
+│   ├── test_logout.py
+│   └── test_pytest_markers.py  # Demonstrates all pytest markers
 │
 ├── utils/                # Utility modules
 │   ├── __init__.py
@@ -143,6 +201,19 @@ To see a more detailed output during test execution, add the `-v` or `-s` flag:
   pytest -s
   ```
 
+**Option F: Run Tests by Marker**
+To run tests with specific markers:
+```sh
+# Run only smoke tests
+pytest -m smoke
+
+# Run only regression tests
+pytest -m regression
+
+# Run tests that demonstrate pytest markers
+pytest tests/test_pytest_markers.py
+```
+
 #### Step 6: Viewing the Test Reports
 After running the tests with the `--html` option, a report file will be generated.
 - The default report location is `report/report.html`.
@@ -157,6 +228,7 @@ When you run the tests, your terminal will show:
 - A dot (`.`) for each passed test.
 - An `F` for each failed test.
 - An `S` for each skipped test.
+- An `x` for each test expected to fail (xfail).
 - A summary of the test run at the end, including the number of tests passed, failed, and skipped, and the total time taken.
 
 If a test fails, Pytest will display:
@@ -173,6 +245,7 @@ If a test fails, Pytest will display:
 - **`tests/test_login.py`**: Contains test cases for the login functionality (e.g., successful login, invalid credentials).
 - **`tests/test_checkout.py`**: Contains the main end-to-end checkout test. It typically includes logging in, adding products to the cart, proceeding to checkout, filling in shipping info, and verifying the order completion.
 - **`tests/test_logout.py`**: Contains tests for ensuring the user can successfully log out.
+- **`tests/test_pytest_markers.py`**: Demonstrates all pytest markers including skip, skipif, xfail, flaky, dependency, and parametrize.
 - **`requirements.txt`**: Lists all Python dependencies (Selenium, Pytest, etc.) needed for the project.
 - **`pytest.ini`**: Configuration file for Pytest, used to set default options (e.g., test discovery paths, addopts).
 
@@ -247,6 +320,7 @@ def test_checkout_complete(login_page, checkout_page):
 - **Error Handling**: Implement try-except blocks in test methods to handle potential exceptions gracefully and log meaningful error messages.
 - **Modularity**: Keep tests small, focused, and independent. One test should verify one specific scenario.
 - **Version Control**: Commit your code and reports to version control (e.g., Git) for tracking changes and history.
+- **Pytest Markers**: Use appropriate markers to categorize tests and control their execution. This helps in organizing tests and running specific subsets based on requirements.
 
 ## Troubleshooting Common Issues
 
@@ -284,6 +358,7 @@ def test_checkout_complete(login_page, checkout_page):
 - Increase explicit wait times where necessary.
 - Add small, strategic delays (`time.sleep(1)`) only if absolutely needed, but prefer explicit waits.
 - Ensure that one test does not depend on the state left by another test. Each test should be independent.
+- Use `@pytest.mark.flaky` marker for tests that are known to be unstable to enable automatic retries.
 
 ### Issue 4: HTML Report Not Generated
 **Problem**: The `--html` report is not created or is empty.
